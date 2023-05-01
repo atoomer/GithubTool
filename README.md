@@ -9,3 +9,6 @@ The user of this application is able to create a new repository by entering the 
 ## How to Run
 
 Java version 8 or higher is required. 
+The external libraries and how to use them can be found here:
+##### [GitSubprocessClient](https://github.com/CSC109/GitSubprocessClient)
+##### [GitHubApiClient](https://github.com/CSC109/GitHubApiClient)
