@@ -29,6 +29,7 @@ public class Main {
         System.out.print("Choose a project that you would like to turn into a GitHub repo.\nEnter file path: ");
         String filePath = scan.next();
         File projectFile = new File(filePath);
+        boolean windows = true;
         if (!projectFile.exists()){
             System.out.println("Something went wrong");
         }
@@ -37,8 +38,14 @@ public class Main {
         }
         String projName="";
         for (int i = filePath.length(); i >=0; i--){
-            if (filePath.charAt(i-1)=='\\')
+            if (filePath.charAt(i-1)=='\\'){
+                windows = true;
                 break;
+            }
+            else if(filePath.charAt(i-1)=='/'){
+                windows = false;
+                break;
+            }
             else
                 projName = (filePath.charAt(i-1)+projName);
         }
@@ -51,7 +58,14 @@ public class Main {
         //git init at filePath
         String gitInit  = gitSubprocessClient.gitInit();
         //add .gitignore
-        String gitIgnoreFilePath = (filePath+"\\.gitignore");
+        String gitIgnoreFilePath = "";
+
+        if (windows == true) {
+            gitIgnoreFilePath = (filePath+"\\.gitignore");
+        }
+        else if (windows == false){
+            gitIgnoreFilePath = (filePath+"/.gitignore");
+        }
         try {
             FileWriter gitignoreWriter = new FileWriter(gitIgnoreFilePath);
             gitignoreWriter.write("*.class\n*.log\n*.ctxt\n.mtj.tmp/\n*.jar\n*.war\n*.nar\n*.ear\n*.zip\n*.tar.gz\n*.rar\n*.vscode\nhs_err_pid*\nreplay_pid*");
@@ -61,7 +75,13 @@ public class Main {
             e.printStackTrace();
           }
         //add README.md
-        String readmeFilePath = (filePath+"\\README.md");
+        String readmeFilePath = "";
+        if (windows == true) {
+            readmeFilePath = (filePath+"\\README.md");
+        }
+        else if (windows == false){
+            readmeFilePath = (filePath+"/README.md");
+        }
         try {
             FileWriter readmeWriter = new FileWriter(readmeFilePath);
             readmeWriter.write("# "+projName);
