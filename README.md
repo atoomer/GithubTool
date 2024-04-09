@@ -1,6 +1,6 @@
-# Microsoft GUI for GitHub 
-## About this GUI
-This GitHub GUI application is a tool to help its user create a GitHub repository without using their command line. To do this, the application uses [GitSubprocessClient](https://github.com/CSC109/GitSubprocessClient) and [GitHubApiClient](https://github.com/CSC109/GitHubApiClient). Java Swing is used for the GUI of the application.
+# GitHub Tool 
+## About
+This GitHub application is a tool to help its user create a GitHub repository without using their command line. To do this, the application uses [GitSubprocessClient](https://github.com/CSC109/GitSubprocessClient) and [GitHubApiClient](https://github.com/CSC109/GitHubApiClient).
 
 ## How to Use
 
