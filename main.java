@@ -49,14 +49,13 @@ public class Main {
             else
                 projName = (filePath.charAt(i-1)+projName);
         }
-        //-----------------------------------------------------------------------
-
-
 
         //create subprocess client
         GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(filePath);
+    
         //git init at filePath
         String gitInit  = gitSubprocessClient.gitInit();
+    
         //add .gitignore
         String gitIgnoreFilePath = "";
 
@@ -74,6 +73,7 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
           }
+    
         //add README.md
         String readmeFilePath = "";
         if (windows == true) {
@@ -94,24 +94,16 @@ public class Main {
         //git add and initial git commit
         String gitAddAll = gitSubprocessClient.gitAddAll();
         String commit = gitSubprocessClient.gitCommit("Initial Commit");
-        //---------------------------------------------------------------
-
-        
 
         //enter github username and api key
         System.out.print("Enter GitHub username and API token.\nusername: ");
         String username = scan.next();
         System.out.print("token: ");
         String apiToken = scan.next();
-        //-----------------------------------------
-
 
 
         //gitHubApiClient object
         GitHubApiClient gitHubApiClient = new GitHubApiClient(username, apiToken);
-        //-------------------------------------------
-
-
 
         //promt for new repo name in GitHub
         System.out.println("Enter the name for the GitHub repo: ");
@@ -137,8 +129,6 @@ public class Main {
         System.out.print("Enter a discription for repo: ");
         String description = scan.next();
         //-----------------------------------------------------
-
-
         
         //creates repo with the entered parameters
         RequestParams requestParams = new RequestParams();
@@ -155,48 +145,8 @@ public class Main {
 
         //push initial commit
         String push = gitSubprocessClient.gitPush("master");
-        //----------------------------------------------------------------
-
-
 
         //print GitHub repo url
         System.out.println(gitHubUrl);
-        //-----------------------------
-
-
-        
-
-        /*
-        JFrame frame = new JFrame("Hello");
-        frame.setSize(800,600);
-        frame.setVisible(true);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-
-        JLabel label = new JLabel("java swing");
-        label.setSize(100, 50);
-        label.setLocation(300, 100);
-        panel.add(label);
-
-        //JButton
-        //JTextField
-
-        JButton button = new JButton("click");
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                label.setForeground(Color.magenta);
-                
-            }
-        });
-
-        button.setSize(200,200);
-        button.setLocation(50,50);
-        panel.add(button);
-
-        frame.setContentPane(panel);
-        frame.setVisible(true);
-        */
-
     }  
 }
